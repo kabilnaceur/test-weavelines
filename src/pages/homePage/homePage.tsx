@@ -1,14 +1,13 @@
 import { FC ,useState} from "react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { formState } from "../../recoil/globaleStates";
 import { Form, Question } from "../../utils/types";
 import AddCard from "./components/addCard";
 import FormInformations from "./components/formInformations";
 import QuestionCard from "./components/questionCard";
 const HomePage: FC = () => {
-    const [formDetails, setFormDetails] = useState<Form>({
-      title: "Form title",
-      description: "",
-      qustions: [],
-    });
+    const setFormDetails = useSetRecoilState(formState);
+    const formDetails: Form = useRecoilValue(formState);
     const [formQuestions, setFormQuestions] = useState<Question[]>([]);
     const [question, setQuestion] = useState<Question>({
       content: "Question",
@@ -31,7 +30,6 @@ const HomePage: FC = () => {
          qustions: formQuestions,
        });
   }
-  console.log("question",formDetails);
   return (
     <div className="flex flex-col w-full h-screen p-16 ">
       <FormInformations
