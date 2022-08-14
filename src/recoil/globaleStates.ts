@@ -1,19 +1,11 @@
 import { atom } from "recoil";
-import { Form, UserAnswer } from "../utils/types";
-const initialForm: Form = {
-  title: "Form title",
-  description: "",
-  questions: [],
-};
-const initialUserAnswers: UserAnswer = {
-  userEmail: "",
-  answers: [],
-};
-export const formState = atom({
-  key: "formState",
-  default: initialForm,
-});
-export const userAnswersState = atom({
-  key: "userAnswersState",
-  default: initialUserAnswers,
+import { Form } from "../utils/types";
+import { recoilPersist } from "recoil-persist";
+const { persistAtom } = recoilPersist();
+const initialAllForms: Form[] = [];
+
+export const allFormsState = atom({
+  key: "allFormsState",
+  default: initialAllForms,
+  effects_UNSTABLE: [persistAtom],
 });

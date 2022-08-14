@@ -1,4 +1,5 @@
-import { Answer, Form, Question, UserAnswer } from "./types";
+import { IndexInfo } from "typescript";
+import { Form, Question, UserAnswer } from "./types";
 
 export interface AddProps {
   question: Question;
@@ -18,6 +19,13 @@ export interface QuestionCardProps {
 }
 export interface QuestionAnswerCardProps {
   question: Question;
-  answers: Answer[];
-  setAnswers: (value: Answer[]) => void;
+  userAnswers: UserAnswer;
+  setUserAnswers: (value: UserAnswer) => void;
+}
+export interface AnswerProps {
+  answer: UserAnswer;
+}
+export interface FormProps {
+    form: Form;
+    index: number;
 }

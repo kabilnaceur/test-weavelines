@@ -1,11 +1,18 @@
 import { FC } from "react";
-import { useRecoilValue } from "recoil";
-import { userAnswersState } from "../../recoil/globaleStates";
+import { useLocation } from "react-router";
 import { UserAnswer } from "../../utils/types";
+import AnswerCard from "./components/answerCard";
 const AnswerPage: FC = () => {
-    const userAnswers: UserAnswer = useRecoilValue(userAnswersState);
-    console.log("userAnswers", userAnswers);
-
-  return <div></div>;
+const location = useLocation();
+ const locationState = location.state as UserAnswer[];
+  const allAnswers: UserAnswer[] = locationState;
+  console.log("allAnswers", allAnswers);
+    return (
+      <div className="flex flex-col w-full h-screen p-16 ">
+        {allAnswers.map((answer: UserAnswer, index: number) => (
+            <AnswerCard answer={answer} key={ index} />
+        ))}
+      </div>
+    );
 };
 export default AnswerPage;

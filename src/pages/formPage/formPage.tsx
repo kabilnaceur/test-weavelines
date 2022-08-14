@@ -1,15 +1,33 @@
 import { FC, useState } from "react";
+import { useLocation } from "react-router";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { formState, userAnswersState } from "../../recoil/globaleStates";
-import { Answer, Form, Question, UserAnswer } from "../../utils/types";
+import { allFormsState } from "../../recoil/globaleStates";
+import { Form, Question, UserAnswer } from "../../utils/types";
 import FormInformations from "./components/formInformations";
 import QuestionCard from "./components/questionCard";
 const FormPage: FC = () => {
-  const formDetails: Form = useRecoilValue(formState);
-  const setUserAnswers = useSetRecoilState(userAnswersState);
-  const userAnswers: UserAnswer = useRecoilValue(userAnswersState);
-  const [answers, setAnswers] = useState<Answer[]>([]);
-  const confirmAnswers = (): void => setUserAnswers({ ...userAnswers ,answers});
+  const location = useLocation();
+  const locationState = location.state as Form;
+  const formDetails: Form = locationState;
+  const [userAnswers, setUserAnswers] = useState<UserAnswer>({
+    userEmail: "",
+    answers: [],
+  });
+   const allForms: Form[] = useRecoilValue(allFormsState);
+   const setAllForms = useSetRecoilState(allFormsState);
+  const confirmAnswers = (): void =>
+  {
+    const newFormAnswer = { ...formDetails, answers: [...formDetails.answers, userAnswers] }
+    let newForm: Form[] = [...allForms];
+    newForm = newForm?.map((f: Form) =>
+      (f.title === formDetails.title &&
+      f.description === formDetails.description)
+        ? newFormAnswer
+        : f
+    );
+    setAllForms(newForm);
+  }
+  console.log("allForms", allForms);
 
   return (
     <div className="flex flex-col w-full h-screen p-16 ">
@@ -18,8 +36,13 @@ const FormPage: FC = () => {
         userAnswers={userAnswers}
         setUserAnswers={setUserAnswers}
       />
-      {formDetails.questions.map((qs: Question) => (
-        <QuestionCard question={qs} answers={answers} setAnswers={setAnswers} />
+      {formDetails.questions.map((qs: Question, index: number) => (
+        <QuestionCard
+          key={index}
+          question={qs}
+          userAnswers={userAnswers}
+          setUserAnswers={setUserAnswers}
+        />
       ))}
       <div className="columns-3 mt-5 flex items-center space-x-4 justify-end pb-10">
         <button

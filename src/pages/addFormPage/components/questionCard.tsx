@@ -18,18 +18,20 @@ const QuestionCard: FC<QuestionCardProps> = ({ question }) => {
               )}
               {question.type === "selectInput" ? (
                 <select
-                  id="countries"
+                  id="selectInput"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >
                   <option>{question.content}</option>
-                  {question.options.map((opt: string) => (
-                    <option value={opt}>{opt}</option>
+                  {question.options.map((opt: string, index: number) => (
+                    <option value={opt} key={index}>
+                      {opt}
+                    </option>
                   ))}
                 </select>
               ) : question.type === "checkbox" ? (
                 <div>
-                  {question.options.map((opt: string) => (
-                    <div className="p-2">
+                  {question.options.map((opt: string, index: number) => (
+                    <div className="p-2" key={index}>
                       <input
                         id="checked-checkbox"
                         type="checkbox"
@@ -43,12 +45,11 @@ const QuestionCard: FC<QuestionCardProps> = ({ question }) => {
                 </div>
               ) : question.type === "radioButton" ? (
                 <div>
-                  {question.options.map((opt: string) => (
-                    <div className="flex items-center mb-4">
+                  {question.options.map((opt: string, index: number) => (
+                    <div className="flex items-center mb-4" key={index}>
                       <input
-                        id="default-radio-1"
+                        id="default-radio"
                         type="radio"
-                        value=""
                         name="default-radio"
                         className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2 "
                       />

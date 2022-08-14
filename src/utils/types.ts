@@ -8,6 +8,7 @@ export type Form = {
   title: string;
   description: string;
   questions: Question[];
+  answers: UserAnswer[];
 };
 export type Answer = {
   question: string;

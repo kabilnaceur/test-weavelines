@@ -52,9 +52,12 @@ const AddCard: FC<AddProps> = ({ question, setQuestion }) => {
                 <label className="block mb-2 text-sm font-medium text-gray-900">
                   Options
                 </label>
-                {question.options.map((opt: string) => (
-                  <label className="block mb-2 text-md font-medium text-gray-900">
-                  {opt}
+                {question.options.map((opt: string, index: number) => (
+                  <label
+                    className="block mb-2 text-md font-medium text-gray-900"
+                    key={index}
+                  >
+                    {opt}
                   </label>
                 ))}
                 <div className="columns-2 flex">

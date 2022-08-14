@@ -1,27 +1,27 @@
 import { ChangeEvent, FC } from "react";
 import { QuestionAnswerCardProps } from "../../../utils/interfaces";
 import { Answer } from "../../../utils/types";
-const QuestionCard: FC<QuestionAnswerCardProps> = ({ question, answers, setAnswers }) => {
-  const addAnswer= (
+const QuestionCard: FC<QuestionAnswerCardProps> = ({
+  question,
+  setUserAnswers,
+  userAnswers,
+}) => {
+  const addAnswer = (
     event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>
   ) => {
-    const newAnswers: Answer[] = [...answers];
+    const newAnswers: Answer[] = [...userAnswers.answers];
     const index: number = newAnswers.findIndex(
       (a: Answer) => a.question === question.content
     );
-    if (answers.length === 0 || index === -1) {
-      setAnswers([
-        ...answers,
-        { question: question.content, answer: event.target.value },
-      ]);
+    if (newAnswers.length === 0 || index === -1) {
+      newAnswers.push({ question: question.content, answer: event.target.value});
     } else {
       newAnswers[index] = {
         question: question.content,
         answer: event.target.value,
       };
-
-      setAnswers(newAnswers);
     }
+    setUserAnswers({...userAnswers,answers:newAnswers})
   };
   return (
     <div>
@@ -45,14 +45,16 @@ const QuestionCard: FC<QuestionAnswerCardProps> = ({ question, answers, setAnswe
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >
                   <option>{question.content}</option>
-                  {question.options.map((opt: string) => (
-                    <option value={opt}>{opt}</option>
+                  {question.options.map((opt: string, index: number) => (
+                    <option value={opt} key={index}>
+                      {opt}
+                    </option>
                   ))}
                 </select>
               ) : question.type === "checkbox" ? (
                 <div>
-                  {question.options.map((opt: string) => (
-                    <div className="p-2">
+                  {question.options.map((opt: string, index: number) => (
+                    <div className="p-2" key={index}>
                       <input
                         onChange={addAnswer}
                         id="checked-checkbox"
@@ -68,8 +70,8 @@ const QuestionCard: FC<QuestionAnswerCardProps> = ({ question, answers, setAnswe
                 </div>
               ) : question.type === "radioButton" ? (
                 <div>
-                  {question.options.map((opt: string) => (
-                    <div className="flex items-center mb-4">
+                  {question.options.map((opt: string, index: number) => (
+                    <div className="flex items-center mb-4" key={index}>
                       <input
                         onChange={addAnswer}
                         id="default-radio-1"
