@@ -7,5 +7,13 @@ export type Question = {
 export type Form = {
   title: string;
   description: string;
-  qustions: Question[];
+  questions: Question[];
+};
+export type Answer = {
+  question: string;
+  answer: string;
+};
+export type UserAnswer = {
+  userEmail: string;
+  answers: Answer[];
 };

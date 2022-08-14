@@ -27,7 +27,7 @@ const HomePage: FC = () => {
   const createForm = (): any => {
        setFormDetails({
          ...formDetails,
-         qustions: formQuestions,
+         questions: formQuestions,
        });
   }
   return (
