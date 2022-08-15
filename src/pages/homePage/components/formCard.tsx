@@ -70,16 +70,16 @@ const FormCard: FC<FormProps> = ({ form, index }) => {
         </div>
       </div>
       <div className="flex flex-col items-center pb-10">
-        <h5 className="mb-1 text-xl font-medium text-gray-900 ">
+        <h5 className="mb-1 text-xl font-medium text-[#243B67] font-sans">
           {form.title}
         </h5>
-        <span className="text-sm text-gray-500 ">{form.description}</span>
+        <span className="text-sm text-gray-500 font-sans">{form.description}</span>
         <div className="flex mt-4 space-x-3 md:mt-6">
           <div
             onClick={() => {
               navigateToAnswer(form);
             }}
-            className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-30"
+            className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-[#C27DFC] rounded-lg hover:bg-[#9d63ce]  focus:ring-4 focus:outline-none focus:ring-blue-30 font-sans"
           >
             Answer
           </div>

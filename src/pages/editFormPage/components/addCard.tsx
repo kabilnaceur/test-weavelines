@@ -37,14 +37,14 @@ const AddCard: FC<EditProps> = ({ question, setQuestion,formDetails,setFormDetai
         <div className="grid">
           <div className="md:columns-2 flex justify-around">
             <div className="w-full p-6">
-              <label className="block mb-2 text-sm font-medium text-gray-900">
+              <label className="block mb-2 text-sm font-medium text-[#243B67]">
                 Question
               </label>
               <input
                 type="text"
                 value={question.content}
                 id="question"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                className="bg-gray-50 border border-gray-300 text-[#243B67] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Question"
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setQuestion({ ...question, content: e.target.value })
@@ -61,7 +61,7 @@ const AddCard: FC<EditProps> = ({ question, setQuestion,formDetails,setFormDetai
                 type="checkbox"
                 className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-50 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600"
               />
-              <label className="ml-2 text-sm font-medium text-gray-900">
+              <label className="ml-2 text-sm font-medium text-[#243B67]">
                 Require
               </label>
             </div>
@@ -69,13 +69,13 @@ const AddCard: FC<EditProps> = ({ question, setQuestion,formDetails,setFormDetai
           <div className="md:columns-2 flex justify-around">
             {question.type !== "textField" && (
               <div className="w-full p-6">
-                <label className="block mb-2 text-sm font-medium text-gray-900">
+                <label className="block mb-2 text-sm font-medium text-[#243B67]">
                   Options
                 </label>
                 {question.options.map((opt: string, index: number) => (
                   <div className="columns-2 flex">
                     <label
-                      className="block mb-2 text-md font-medium text-gray-900"
+                      className="block mb-2 text-md font-medium text-[#243B67]"
                       key={index}
                     >
                       {opt}
@@ -89,7 +89,7 @@ const AddCard: FC<EditProps> = ({ question, setQuestion,formDetails,setFormDetai
                   <input
                     type="text"
                     id="option1"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    className="bg-gray-50 border border-gray-300 text-[#243B67] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="Option1"
                     value={option}
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -109,7 +109,7 @@ const AddCard: FC<EditProps> = ({ question, setQuestion,formDetails,setFormDetai
                   : " items-center justify-center mt-6 w-full  pl-6"
               }
             >
-              <label className="block mb-2 text-sm font-medium text-gray-900">
+              <label className="block mb-2 text-sm font-medium text-[#243B67]">
                 Select a type
               </label>
               <select
@@ -118,7 +118,7 @@ const AddCard: FC<EditProps> = ({ question, setQuestion,formDetails,setFormDetai
                 }
                 value={question.type}
                 id="countries"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                className="bg-gray-50 border border-gray-300 text-[#243B67] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               >
                 <option value="checkbox">Checkbox</option>
                 <option value="textField">Text field</option>
@@ -127,14 +127,14 @@ const AddCard: FC<EditProps> = ({ question, setQuestion,formDetails,setFormDetai
               </select>
             </div>
           </div>
-                <div className="columns-3  flex items-center space-x-4 justify-end pt-10">
-        <button
-          onClick={addFormQuestion}
-          className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-        >
-          Add
+          <div className="columns-3  flex items-center space-x-4 justify-end pt-10">
+            <button
+              onClick={addFormQuestion}
+              className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-[#C27DFC] rounded-lg hover:bg-[#9d63ce]  focus:ring-4 focus:outline-none focus:ring-blue-30"
+            >
+              Add
             </button>
-            </div>
+          </div>
         </div>
       </div>
     </div>

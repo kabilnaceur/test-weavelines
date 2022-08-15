@@ -30,11 +30,11 @@ const QuestionCard: FC<QuestionAnswerCardProps> = ({
           <div className="flex justify-around">
             <div className="w-full p-6">
               {question.isRequired ? (
-                <label className="block mb-2 text-sm font-medium text-gray-900 ">
+                <label className="block mb-2 text-sm font-medium text-[#243B67] ">
                   {question.content} *
                 </label>
               ) : (
-                <label className="block mb-2 text-sm font-medium text-gray-900 ">
+                <label className="block mb-2 text-sm font-medium text-[#243B67] ">
                   {question.content}
                 </label>
               )}
@@ -42,7 +42,7 @@ const QuestionCard: FC<QuestionAnswerCardProps> = ({
                 <select
                   id="answers"
                   onChange={addAnswer}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  className="bg-gray-50 border border-gray-300 text-[#243B67] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >
                   <option>{question.content}</option>
                   {question.options.map((opt: string, index: number) => (
@@ -62,7 +62,7 @@ const QuestionCard: FC<QuestionAnswerCardProps> = ({
                         value={opt}
                         className="w-5 h-5 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-50 focus:ring-2"
                       />
-                      <label className="ml-2 text-md font-medium text-gray-900">
+                      <label className="ml-2 text-md font-medium text-[#243B67]">
                         {opt}
                       </label>
                     </div>
@@ -80,7 +80,7 @@ const QuestionCard: FC<QuestionAnswerCardProps> = ({
                         name="default-radio"
                         className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2 "
                       />
-                      <label className="ml-2 text-md font-medium text-gray-900">
+                      <label className="ml-2 text-md font-medium text-[#243B67]">
                         {opt}
                       </label>
                     </div>
@@ -90,7 +90,7 @@ const QuestionCard: FC<QuestionAnswerCardProps> = ({
                 <input
                   type="text"
                   id={question.content}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  className="bg-gray-50 border border-gray-300 text-[#243B67] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   placeholder={question.content}
                   onChange={addAnswer}
                 />
