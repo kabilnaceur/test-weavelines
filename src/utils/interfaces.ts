@@ -5,6 +5,12 @@ export interface AddProps {
   question: Question;
   setQuestion: (value: Question) => void;
 }
+export interface EditProps {
+  question: Question;
+  setQuestion: (value: Question) => void;
+  formDetails: Form;
+  setFormDetails: (value: Form) => void;
+}
 export interface FormInformationsProps {
   formDetails: Form;
   setFormDetails: (value: Form) => void;
@@ -30,6 +36,7 @@ export interface AnswerProps {
   index: number;
   form: Form;
   setAllAnswers: (value: UserAnswer[]) => void;
+  allAnswers: UserAnswer[];
 }
 export interface FormProps {
   form: Form;

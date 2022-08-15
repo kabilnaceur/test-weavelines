@@ -15,6 +15,7 @@ const AnswerPage: FC = () => {
           index={index}
           form={locationState}
           setAllAnswers={setAllAnswers}
+          allAnswers={allAnswers}
         />
       ))}
     </div>

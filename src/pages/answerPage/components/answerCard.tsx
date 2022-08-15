@@ -5,11 +5,11 @@ import { XIcon } from "@heroicons/react/outline";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { allFormsState } from "../../../recoil/globaleStates";
 
-const AnswerCard: FC<AnswerProps> = ({ answer, index ,form,setAllAnswers}) => {
+const AnswerCard: FC<AnswerProps> = ({ answer, index ,form,setAllAnswers,allAnswers}) => {
     const allForms: Form[] = useRecoilValue(allFormsState);
     const setAllForms = useSetRecoilState(allFormsState);
   const deleteAnswer = (): void => {
-    const newAnswers: UserAnswer[] = [...form.answers]
+    const newAnswers: UserAnswer[] = [...allAnswers]
     newAnswers.splice(index, 1);
     const newForm: Form = { ...form, answers: newAnswers };
     setAllAnswers(newAnswers);

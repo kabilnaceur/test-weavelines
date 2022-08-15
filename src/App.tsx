@@ -9,6 +9,7 @@ import { RecoilRoot } from "recoil";
 import FloatingBtton from "./components/floatingButton";
 import AddFormPage from "./pages/addFormPage/addFormPage";
 import AnswersFormsPage from "./pages/answersFormsPage/answersFormsPage";
+import EditFormPage from "./pages/editFormPage/editFormPage";
 
 interface AppProps {}
 const App:FC <AppProps>= () => {
@@ -22,6 +23,7 @@ const App:FC <AppProps>= () => {
         </Routes>
         <Routes>
           <Route path="/addForm" element={<AddFormPage />} />
+          <Route path="/editForm" element={<EditFormPage />} />
           <Route path="/answer" element={<AnswerPage />} />
           <Route path="/form" element={<FormPage />} />
           <Route path="*" element={<FloatingBtton />} />

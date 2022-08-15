@@ -5,38 +5,32 @@ import { Form, Question } from "../../utils/types";
 import AddCard from "./components/addCard";
 import FormInformations from "./components/formInformations";
 import QuestionCard from "./components/questionCard";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const AddFormPage: FC = () => {
+const EditFormPage: FC = () => {
   const navigate = useNavigate();
   const allForms: Form[] = useRecoilValue(allFormsState);
   const setAllForms = useSetRecoilState(allFormsState);
-  const [formDetails, setFormDetails] = useState<Form>({
-    title: "Form title",
-    description: "",
-    questions: [],
-    answers: [],
-  });
+  const location = useLocation();
+  const locationState = location.state as Form;
+  const [formDetails, setFormDetails] = useState<Form>(locationState);
   const [question, setQuestion] = useState<Question>({
     content: "Question",
     type: "textField",
     isRequired: false,
     options: [],
   });
-  const addFormQuestion = (): any => {
-    setFormDetails({
-      ...formDetails,
-      questions: [...formDetails.questions, question],
-    });
-    setQuestion({
-      content: "Question",
-      type: "textField",
-      isRequired: false,
-      options: [],
-    });
-  };
-  const createForm = (): void => {
-    setAllForms([...allForms, formDetails]);
+  console.log(formDetails);
+  const editForm = (): void => {
+    let newAllForms: Form[] = [...allForms];
+    newAllForms = newAllForms?.map((f: Form) =>
+      f.title === locationState.title &&
+      f.description === locationState.description
+        ? formDetails
+        : f
+    );
+    console.log("newAllForms", newAllForms);
+    setAllForms(newAllForms);
     navigate("/");
   };
   return (
@@ -56,22 +50,27 @@ const AddFormPage: FC = () => {
           />
         ))}
       </div>
-      <AddCard question={question} setQuestion={setQuestion} />
+      <AddCard
+        question={question}
+        setQuestion={setQuestion}
+        formDetails={formDetails}
+        setFormDetails={setFormDetails}
+      />
       <div className="columns-3 m-10 flex items-center space-x-4 justify-end pb-10">
         <button
-          onClick={addFormQuestion}
+          onClick={() => navigate("/")}
           className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
         >
-          Add
+          Cancel
         </button>
         <button
-          onClick={createForm}
+          onClick={editForm}
           className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
         >
-          Create
+          Edit
         </button>
       </div>
     </div>
   );
 };
-export default AddFormPage;
+export default EditFormPage;
