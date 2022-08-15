@@ -8,14 +8,14 @@ const HomePage: FC = () => {
     const allForms: Form[] = useRecoilValue(allFormsState);
 
   return (
-    <div className="flex flex-col w-full flex-wrap h-screen p-16 items-center">
+    <div className=" flex-col w-full h-screen pt-16 items-center pl-10">
       {allForms.length === 0 ? (
         <div>
           <h1 className="text-3xl text-gray-900">No forms yet</h1>
           <h1 className="text-md text-gray-900">please add one.</h1>
         </div>
       ) : (
-        <div className="	columns-auto  flex w-full">
+        <div className="	columns-3  flex w-full flex-wrap ">
           {allForms.map((form: Form, index: number) => (
             <FormCard key={index} form={form} index={index} />
           ))}

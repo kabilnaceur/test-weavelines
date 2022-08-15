@@ -16,6 +16,9 @@ export interface FormAnswerInformationsProps {
 }
 export interface QuestionCardProps {
   question: Question;
+  formDetails: Form;
+  setFormDetails: (value: Form) => void;
+  index: number;
 }
 export interface QuestionAnswerCardProps {
   question: Question;
@@ -24,8 +27,11 @@ export interface QuestionAnswerCardProps {
 }
 export interface AnswerProps {
   answer: UserAnswer;
+  index: number;
+  form: Form;
+  setAllAnswers: (value: UserAnswer[]) => void;
 }
 export interface FormProps {
-    form: Form;
-    index: number;
+  form: Form;
+  index: number;
 }

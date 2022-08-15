@@ -47,7 +47,13 @@ const AddFormPage: FC = () => {
       />
       <div>
         {formDetails.questions.map((qs: Question, index: number) => (
-          <QuestionCard question={qs} key={index} />
+          <QuestionCard
+            question={qs}
+            key={index}
+            formDetails={formDetails}
+            setFormDetails={setFormDetails}
+            index={index}
+          />
         ))}
       </div>
       <AddCard question={question} setQuestion={setQuestion} />

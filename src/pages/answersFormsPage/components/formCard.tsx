@@ -6,10 +6,10 @@ import { Form } from "../../../utils/types";
 const FormCard: FC<FormProps> = ({ form }) => {
     const navigate = useNavigate();
     const navigateToAnswer = (form:Form): void => {
-      navigate("/answer", { state:  form.answers });
+      navigate("/answer", { state:  form });
     }
   return (
-    <div className="w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md mt-5 mr-5">
+    <div className="w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md p-5">
       <div className="flex flex-col items-center pb-10">
         <h5 className="mb-1 text-xl font-medium text-gray-900 ">
           {form.title}

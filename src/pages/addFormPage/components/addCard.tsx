@@ -1,15 +1,23 @@
-import { FC,ChangeEvent, useState } from "react";
+import { FC, ChangeEvent, useState } from "react";
 import { AddProps } from "../../../utils/interfaces";
-import { PlusCircleIcon } from "@heroicons/react/outline";
-
+import { PlusCircleIcon ,XCircleIcon} from "@heroicons/react/outline";
+import { Question } from "../../../utils/types";
 
 const AddCard: FC<AddProps> = ({ question, setQuestion }) => {
-  const [option, setOption] = useState<string>(
-    "option"
-  );
+  const [option, setOption] = useState<string>("option");
   const addOptions = (): void => {
-    setQuestion({ ...question, options: [...question.options, option] })
-    setOption('option')
+    setQuestion({ ...question, options: [...question.options, option] });
+    setOption("option");
+  };
+  const deleteOption = (option:string): void => {
+    const newOptions: string[] = [...question.options]
+        const index: number = newOptions.findIndex(
+          (o: string) => o === option
+        );
+    newOptions.splice(index, 1);
+    const newQuestion: Question = { ...question, options: newOptions }
+    setQuestion(newQuestion)
+
   }
   return (
     <div>
@@ -53,12 +61,17 @@ const AddCard: FC<AddProps> = ({ question, setQuestion }) => {
                   Options
                 </label>
                 {question.options.map((opt: string, index: number) => (
-                  <label
-                    className="block mb-2 text-md font-medium text-gray-900"
-                    key={index}
-                  >
-                    {opt}
-                  </label>
+                  <div className="columns-2 flex">
+                    <label
+                      className="block mb-2 text-md font-medium text-gray-900"
+                      key={index}
+                    >
+                      {opt}
+                    </label>
+                    <div className="pl-10" onClick={() => deleteOption(opt)}>
+                      <XCircleIcon className="w-5 text-red-600" />
+                    </div>
+                  </div>
                 ))}
                 <div className="columns-2 flex">
                   <input
