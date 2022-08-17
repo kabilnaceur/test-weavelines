@@ -29,9 +29,9 @@ const AnswersFormsPage: FC = () => {
       ) : (
         <div className="	columns-3 flex-wrap  flex w-full">
           {allForms.map((form: Form, index: number) => (
-            <div>
+            <div key={index}>
               {form.answers.length !== 0 && (
-                <div key={index} className="mr-5 mt-5">
+                <div className="mr-5 mt-5">
                   <FormCard form={form} index={index} />
                 </div>
               )}

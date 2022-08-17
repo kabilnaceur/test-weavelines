@@ -1,11 +1,8 @@
-import { FC, ChangeEvent } from "react";
+import { FC } from "react";
 import { FormAnswerInformationsProps } from "../../../utils/interfaces";
 
 const FormInformations: FC<FormAnswerInformationsProps> = ({
   formDetails,
-  userAnswers,
-  setUserAnswers,
-  userEmailError,
   errors,
   register
 }) => {
@@ -36,14 +33,10 @@ const FormInformations: FC<FormAnswerInformationsProps> = ({
                 {...register("userEmail", {
                   required: true,
                 })}
-                value={userAnswers.userEmail}
                 type="text"
                 id="Email"
                 className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Email"
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setUserAnswers({ ...userAnswers, userEmail: e.target.value })
-                }
               />
             </div>
           </div>

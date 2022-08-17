@@ -13,6 +13,7 @@ export type Form = {
 export type Answer = {
   question: string;
   answer: string;
+  isRequired: boolean;
 };
 export type UserAnswer = {
   userEmail: string;

@@ -2,50 +2,43 @@ import { FC, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { allFormsState } from "../../recoil/globaleStates";
-import { Answer, Form, Question, UserAnswer } from "../../utils/types";
+import { Form, Question, UserAnswer } from "../../utils/types";
 import FormInformations from "./components/formInformations";
 import QuestionCard from "./components/questionCard";
-import { Resolver, useForm } from "react-hook-form";
-import { ZoomIn } from "heroicons-react";
-const resolver: Resolver<UserAnswer> = async (values) => {
-    console.log(values)
-    return {
-      values: values.userEmail ? values : {},
-      errors: !values.userEmail
-        ? {
-            userEmail: {
-              type: "required",
-              message: "This is required.",
-            },
-          }
-        : {},
-    };
-  };
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from 'yup'
+
 const FormPage: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  
+      const schema = yup.object().shape({
+        userEmail: yup.string().required(),
+        answers: yup
+          .array()
+          .of(yup.object().shape({
+            answer: yup.string().nullable(true).when('isRequired', {
+                 is: true,
+                 then: yup.string().required(),
+             })
+          })),
+      });
     const {
       register,
       handleSubmit,
       formState: { errors },
-    } = useForm<UserAnswer>({resolver});
-  const onSubmit = (data: UserAnswer) => confirmAnswers();
-
+    } = useForm<UserAnswer>({ resolver: yupResolver(schema) });
+  const onSubmit = (data: UserAnswer) => confirmAnswers(data);
+console.log('errors',errors)
   const locationState = location.state as Form;
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [userEmailError, setUserEmailError] = useState<boolean>(false);
   const formDetails: Form = locationState;
-  const [userAnswers, setUserAnswers] = useState<UserAnswer>({
-    userEmail: "",
-    answers: [],
-  });
   const allForms: Form[] = useRecoilValue(allFormsState);
   const setAllForms = useSetRecoilState(allFormsState);
-  const confirmAnswers = (): void => {
+  const confirmAnswers = (data:UserAnswer): void => {
     const newFormAnswer = {
       ...formDetails,
-      answers: [...formDetails.answers, userAnswers],
+      answers: [...formDetails.answers, data],
     };
     let newForm: Form[] = [...allForms];
     newForm = newForm?.map((f: Form) =>
@@ -55,19 +48,9 @@ const FormPage: FC = () => {
     );
     setAllForms(newForm);
     setShowModal(true);
-    setUserEmailError(false);
   };
   const resetAnswers = (): void => {
-    setUserAnswers({
-      userEmail: "",
-      answers: [],
-    });
     setShowModal(false);
-  };
-  const validation = (): void => {
-    if (!userAnswers.userEmail.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i))
-      setUserEmailError(true);
-    else confirmAnswers();
   };
 
   return (
@@ -79,23 +62,19 @@ const FormPage: FC = () => {
       </div>
       <FormInformations
         formDetails={formDetails}
-        userAnswers={userAnswers}
-        setUserAnswers={setUserAnswers}
-        userEmailError={userEmailError}
         register={register}
         errors={errors}
       />
       <form onSubmit={handleSubmit(onSubmit)}>
-        {errors?.userEmail && <p>{errors.userEmail.message}</p>}
         {formDetails.questions.map((qs: Question, index: number) => (
-          <QuestionCard
-            key={index}
-            question={qs}
-            userAnswers={userAnswers}
-            setUserAnswers={setUserAnswers}
-            register={register}
-            index={index}
-          />
+          <div key={index}>
+            <QuestionCard
+              question={qs}
+              register={register}
+              index={index}
+              errors={errors}
+            />
+          </div>
         ))}
         <div className="columns-3 mt-5 flex items-center space-x-4 justify-end pb-10">
           <button

@@ -1,37 +1,23 @@
-import { ChangeEvent, FC } from "react";
+import { FC } from "react";
 import { QuestionAnswerCardProps } from "../../../utils/interfaces";
-import { Answer } from "../../../utils/types";
-
 const QuestionCard: FC<QuestionAnswerCardProps> = ({
   question,
-  setUserAnswers,
-  userAnswers,
   register,
-  index
+  index,
+  errors
 }) => {
-  const addAnswer = (
-    event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>
-  ) => {
-    const newAnswers: Answer[] = [...userAnswers.answers];
-    const index: number = newAnswers.findIndex(
-      (a: Answer) => a.question === question.content
-    );
-    if (newAnswers.length === 0 || index === -1) {
-      newAnswers.push({ question: question.content, answer: event.target.value});
-    } else {
-      newAnswers[index] = {
-        question: question.content,
-        answer: event.target.value,
-      };
-    }
-    setUserAnswers({...userAnswers,answers:newAnswers})
-  };
+
   return (
     <div>
       <div className=" p-6 bg-white rounded-xl shadow-lg items-center space-x-4 mb-5">
         <div className="grid">
           <div className="flex justify-around">
             <div className="w-full p-6">
+              {errors?.answers?.some?.((answer: any, i) => i === index) && (
+                <label className="block text-sm font-medium text-red-600 mt-5">
+                  this is a required field
+                </label>
+              )}
               {question.isRequired ? (
                 <label className="block mb-2 text-sm font-medium text-black ">
                   {question.content} *
@@ -43,29 +29,35 @@ const QuestionCard: FC<QuestionAnswerCardProps> = ({
               )}
               {question.type === "selectInput" ? (
                 <select
-                  {...register(`answers.${index}.answer`, {
-                    required: question.isRequired,
+                  {...register(`answers.${index}.question`, {
+                    value: question.content,
                   })}
+                  {...register(`answers.${index}.isRequired`, {
+                    value: question.isRequired,
+                  })}
+                  {...register(`answers.${index}.answer`)}
                   id="answers"
-                  onChange={addAnswer}
                   className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >
                   <option>{question.content}</option>
-                  {question.options.map((opt: string, index: number) => (
-                    <option value={opt} key={index}>
+                  {question.options.map((opt: string, i: number) => (
+                    <option value={opt} key={i}>
                       {opt}
                     </option>
                   ))}
                 </select>
               ) : question.type === "checkbox" ? (
                 <div>
-                  {question.options.map((opt: string, index: number) => (
-                    <div className="p-2" key={index}>
+                  {question.options.map((opt: string, i: number) => (
+                    <div className="p-2" key={i}>
                       <input
-                        {...register(`answers.${index}.answer`, {
-                          required: question.isRequired,
+                        {...register(`answers.${index}.question`, {
+                          value: question.content,
                         })}
-                        onChange={addAnswer}
+                        {...register(`answers.${index}.isRequired`, {
+                          value: question.isRequired,
+                        })}
+                        {...register(`answers.${index}.answer`)}
                         id="checked-checkbox"
                         type="checkbox"
                         value={opt}
@@ -79,17 +71,19 @@ const QuestionCard: FC<QuestionAnswerCardProps> = ({
                 </div>
               ) : question.type === "radioButton" ? (
                 <div>
-                  {question.options.map((opt: string, index: number) => (
-                    <div className="flex items-center mb-4" key={index}>
+                  {question.options.map((opt: string, i: number) => (
+                    <div className="flex items-center mb-4" key={i}>
                       <input
-                        {...register(`answers.${index}.answer`, {
-                          required: question.isRequired,
+                        {...register(`answers.${index}.question`, {
+                          value: question.content,
                         })}
-                        onChange={addAnswer}
-                        id="default-radio-1"
+                        {...register(`answers.${index}.isRequired`, {
+                          value: question.isRequired,
+                        })}
+                        {...register(`answers.${index}.answer`)}
+                        id={opt}
                         type="radio"
                         value={opt}
-                        name={`${opt}`}
                       />
                       <label className="ml-2 text-md font-medium text-black">
                         {opt}
@@ -99,14 +93,17 @@ const QuestionCard: FC<QuestionAnswerCardProps> = ({
                 </div>
               ) : (
                 <input
-                  {...register(`answers.${index}.answer`, {
-                    required: question.isRequired,
+                  {...register(`answers.${index}.question`, {
+                    value: question.content,
                   })}
+                  {...register(`answers.${index}.isRequired`, {
+                    value: question.isRequired,
+                  })}
+                  {...register(`answers.${index}.answer`)}
                   type="text"
                   id={question.content}
                   className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   placeholder={question.content}
-                  onChange={addAnswer}
                 />
               )}
             </div>
