@@ -7,6 +7,7 @@ import FormInformations from "./components/formInformations";
 import QuestionCard from "./components/questionCard";
 import { useLocation, useNavigate } from "react-router-dom";
 
+/* A function component that is used to edit a form. so it's desplay a screen to edit */
 const EditFormPage: FC = () => {
   const navigate = useNavigate();
   const allForms: Form[] = useRecoilValue(allFormsState);
@@ -20,6 +21,11 @@ const EditFormPage: FC = () => {
     isRequired: false,
     options: [],
   });
+ /**
+  * It takes the current state of allForms, maps over it, and replaces the form that matches the title
+  * and description of the form that was clicked on in the previous page with the new form details that
+  * were entered in the form and edit it with the new value.
+  */
   const editForm = (): void => {
     let newAllForms: Form[] = [...allForms];
     newAllForms = newAllForms?.map((f: Form) =>

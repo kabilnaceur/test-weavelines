@@ -4,6 +4,7 @@ import { allFormsState } from "../../recoil/globaleStates";
 import { Form } from "../../utils/types";
 import FormCard from "./components/formCard";
 
+/* A React component that is using Recoil to get the state of all the forms and desplay a screen to all forms has an answer array*/
 const AnswersFormsPage: FC = () => {
     const allForms: Form[] = useRecoilValue(allFormsState);
   return (

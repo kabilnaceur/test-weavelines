@@ -1,5 +1,8 @@
 import { FC } from "react";
 import { QuestionAnswerCardProps } from "../../../utils/interfaces";
+/* This is a React component that is being exported. It is a functional component that takes in props
+of type QuestionAnswerCardProps. It is a component that is used to display a question and its
+answer. */
 const QuestionCard: FC<QuestionAnswerCardProps> = ({
   question,
   register,

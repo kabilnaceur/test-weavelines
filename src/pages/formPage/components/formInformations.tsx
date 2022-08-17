@@ -1,6 +1,8 @@
 import { FC } from "react";
 import { FormAnswerInformationsProps } from "../../../utils/interfaces";
 
+/* It's a function component that take props from FormAnswerInformationsProps interface and return a
+card with title and description form and an input to add email user. */
 const FormInformations: FC<FormAnswerInformationsProps> = ({
   formDetails,
   errors,

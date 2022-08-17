@@ -1,8 +1,11 @@
 import { FC } from "react";
 import { PlusIcon } from "@heroicons/react/outline";
 import { useNavigate } from "react-router-dom";
-import { Outlet } from "react-router-dom";
 
+/**
+ * It's a floating button that when clicked, navigates to the addForm page to add a form
+ * @returns A button with a plus icon inside of it.
+ */
 const FloatingBtton: FC = () => {
   const navigate = useNavigate();
   return (
@@ -16,7 +19,6 @@ const FloatingBtton: FC = () => {
       >
         <PlusIcon className="w-8" />
       </button>
-      <Outlet />
     </div>
   );
 };

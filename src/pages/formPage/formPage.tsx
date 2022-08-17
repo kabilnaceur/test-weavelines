@@ -7,35 +7,46 @@ import FormInformations from "./components/formInformations";
 import QuestionCard from "./components/questionCard";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from 'yup'
+import * as yup from "yup";
 
+/* The above code is a React component that is responsible for adding answers to a form. */
 const FormPage: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-      const schema = yup.object().shape({
-        userEmail: yup.string().required(),
-        answers: yup
-          .array()
-          .of(yup.object().shape({
-            answer: yup.string().nullable(true).when('isRequired', {
-                 is: true,
-                 then: yup.string().required(),
-             })
-          })),
-      });
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-    } = useForm<UserAnswer>({ resolver: yupResolver(schema) });
+ /* A validation schema for the form. */
+  const schema = yup.object().shape({
+    userEmail: yup.string().required(),
+    answers: yup.array().of(
+      yup.object().shape({
+        answer: yup.string().nullable(true).when("isRequired", {
+          is: true,
+          then: yup.string().required(),
+        }),
+      })
+    ),
+  });
+/* A react hook that is responsible for validating the form. */
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<UserAnswer>({ resolver: yupResolver(schema) });
+/**
+ * A function that takes in a parameter of type UserAnswer and returns a function that takes in a
+ * parameter of type UserAnswer to submit a form if the form is validate.
+ * @param {UserAnswer} data - UserAnswer
+ */
   const onSubmit = (data: UserAnswer) => confirmAnswers(data);
-console.log('errors',errors)
   const locationState = location.state as Form;
   const [showModal, setShowModal] = useState<boolean>(false);
   const formDetails: Form = locationState;
   const allForms: Form[] = useRecoilValue(allFormsState);
   const setAllForms = useSetRecoilState(allFormsState);
-  const confirmAnswers = (data:UserAnswer): void => {
+/**
+ * It takes in a UserAnswer object and adds it to the formDetails object.
+ * @param {UserAnswer} data - UserAnswer - this is the data that is passed from the child component.
+ */
+  const confirmAnswers = (data: UserAnswer): void => {
     const newFormAnswer = {
       ...formDetails,
       answers: [...formDetails.answers, data],

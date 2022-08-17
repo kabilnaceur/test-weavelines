@@ -2,6 +2,10 @@ import { FC, useState } from "react";
 import { useLocation } from "react-router";
 import { Form, UserAnswer } from "../../utils/types";
 import AnswerCard from "./components/answerCard";
+/* A functional component that is using the useLocation hook to get the location state. It is then
+using the useState hook to set the state of allAnswers to the locationState.answers.
+to show a screen for all answer form
+ */
 const AnswerPage: FC = () => {
   const location = useLocation();
   const locationState = location.state as Form;

@@ -3,6 +3,7 @@ import { QuestionCardProps } from "../../../utils/interfaces";
 import { Form, Question } from "../../../utils/types";
 import { PlusCircleIcon, XCircleIcon } from "@heroicons/react/outline";
 
+/* The above code is a React component that is used to display a question in a form. */
 const QuestionCard: FC<QuestionCardProps> = ({ question,formDetails,setFormDetails ,index}) => {
   const [show, setShow] = useState<Boolean>(false);
   const handleChangeShow = (): void => setShow(!show);

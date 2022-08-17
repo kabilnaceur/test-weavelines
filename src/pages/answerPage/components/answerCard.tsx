@@ -5,6 +5,15 @@ import { XIcon } from "@heroicons/react/outline";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { allFormsState } from "../../../recoil/globaleStates";
 
+/**
+ * It's a React functional component that takes in an answer object, an index, a form object, a
+ * setAllAnswers function and an allAnswers array. It then uses the Recoil library to get the allForms
+ * array and a setAllForms function. It then defines a deleteAnswer function that removes the answer
+ * from the allAnswers array and then updates the form object with the new answers array. It then
+ * updates the allForms array with the new form object.
+ * @param  - FC<AnswerProps>
+ * @returns A React component that displays the answers of a user.
+ */
 const AnswerCard: FC<AnswerProps> = ({ answer, index ,form,setAllAnswers,allAnswers}) => {
     const allForms: Form[] = useRecoilValue(allFormsState);
     const setAllForms = useSetRecoilState(allFormsState);

@@ -3,6 +3,9 @@ import { useRecoilValue } from "recoil";
 import { allFormsState } from "../../recoil/globaleStates";
 import { Form } from "../../utils/types";
 import FormCard from "./components/formCard";
+/* A React component that is using the Recoil library to get the state of all the forms. 
+and desplay a screen with all forms that user added to answer to it
+ */
 
 const HomePage: FC = () => {
     const allForms: Form[] = useRecoilValue(allFormsState);

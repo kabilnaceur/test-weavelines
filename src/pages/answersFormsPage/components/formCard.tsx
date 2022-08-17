@@ -3,6 +3,12 @@ import { useNavigate } from "react-router";
 import { FormProps } from "../../../utils/interfaces";
 import { Form } from "../../../utils/types";
 
+/**
+ * It's a function component that takes a form as a prop and returns a div with a title, description,
+ * and a button that navigates to the answer page => a form  card
+ * @param  - FC<FormProps>
+ * @returns A React component
+ */
 const FormCard: FC<FormProps> = ({ form }) => {
     const navigate = useNavigate();
     const navigateToAnswer = (form:Form): void => {

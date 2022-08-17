@@ -7,6 +7,7 @@ import FormInformations from "./components/formInformations";
 import QuestionCard from "./components/questionCard";
 import { useNavigate } from "react-router-dom";
 
+/* A function component that is used to show add form screen. */
 const AddFormPage: FC = () => {
   const navigate = useNavigate();
   const allForms: Form[] = useRecoilValue(allFormsState);
@@ -23,6 +24,10 @@ const AddFormPage: FC = () => {
     isRequired: false,
     options: [],
   });
+/**
+ * It takes the current formDetails and adds the current question to the questions array
+ * that's mean when user add a form component it will add to the question array for a form
+ */
   const addFormQuestion = (): any => {
     setFormDetails({
       ...formDetails,
@@ -35,6 +40,10 @@ const AddFormPage: FC = () => {
       options: [],
     });
   };
+/**
+ * It takes the current state of the formDetails object and adds it to the allForms array
+ * that's mean add a form to the user form array and navigate to all forms screen to answer or add other form
+ */
   const createForm = (): void => {
     setAllForms([...allForms, formDetails]);
     navigate("/");

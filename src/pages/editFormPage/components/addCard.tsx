@@ -3,6 +3,7 @@ import {  EditProps } from "../../../utils/interfaces";
 import { PlusCircleIcon ,XCircleIcon} from "@heroicons/react/outline";
 import { Question } from "../../../utils/types";
 
+/* A functional component that is used to add a question to the form edited. */
 const AddCard: FC<EditProps> = ({ question, setQuestion,formDetails,setFormDetails }) => {
   const [option, setOption] = useState<string>("option");
     const addFormQuestion = (): any => {

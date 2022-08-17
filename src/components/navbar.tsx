@@ -4,9 +4,21 @@ import { NavLink } from "react-router-dom";
 import { allFormsState } from "../recoil/globaleStates";
 import { useResetRecoilState } from "recoil";
 import logo from "../assets/images/weavelines-logo.png";
+/**
+ * It's a functional component that renders a navbar with a logo, two links :
+ * - forms to navigate to all forms added screen 
+ *  * - Forms to navigate to all forms added screen 
+ *  * - Answers to navigate to all answers added screen 
+ *  and a button
+ * @returns A React component
+ */
 const Navbar: FC = () => {
   const [nav, setNav] = useState<boolean>(false);
+/**
+ * It sets the nav state to the opposite of what it is to show a options menu when the screen will be little .
+ */
   const handleClick = (): void => setNav(!nav);
+/* It's a recoil hook that resets the state of allFormsState to the initial value the's mean delete all forms and set it to empty array */
   const resetForms = useResetRecoilState(allFormsState);
 
   return (

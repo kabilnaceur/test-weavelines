@@ -1,6 +1,11 @@
 import { FC, ChangeEvent } from "react";
 import { FormInformationsProps } from "../../../utils/interfaces";
 
+/**
+ * It's a function component to edit form informations : title and description
+ * @param  - FC <FormInformationsProps>
+ * @returns A div with a div inside of it.
+ */
 const FormInformations: FC <FormInformationsProps> = ({formDetails,setFormDetails}) => {
   return (
     <div>

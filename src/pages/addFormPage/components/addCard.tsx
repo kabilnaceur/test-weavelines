@@ -2,6 +2,10 @@ import { FC, ChangeEvent, useState } from "react";
 import { AddProps } from "../../../utils/interfaces";
 import { PlusCircleIcon ,XCircleIcon} from "@heroicons/react/outline";
 import { Question } from "../../../utils/types";
+/* A functional component that takes in a question and a setQuestion function as props. It also has a
+state called option which is a string. It has two functions addOptions and deleteOption. The
+addOptions function adds an option to the question. The deleteOption function deletes an option from
+the question. */
 
 const AddCard: FC<AddProps> = ({ question, setQuestion }) => {
   const [option, setOption] = useState<string>("option");

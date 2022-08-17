@@ -4,6 +4,12 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { allFormsState } from "../../../recoil/globaleStates";
 import { FormProps } from "../../../utils/interfaces";
 import { Form } from "../../../utils/types";
+/**
+ * It's a React functional component that renders a card with a form's title, description, and a button
+ * to answer the form
+ * @param  - FormProps
+ * @returns A React component
+ */
 
 const FormCard: FC<FormProps> = ({ form, index }) => {
   const navigate = useNavigate();
