@@ -32,7 +32,12 @@ const EditFormPage: FC = () => {
     navigate("/");
   };
   return (
-    <div className="flex flex-col w-full h-screen p-16 ">
+    <div className="flex flex-col w-full h-screen p-[100px] ">
+            <div className=" w-full p-6">
+        <h1 className="text-3xl font-bold mr-4 sm:text-3xl text-black">
+          Edit forms
+        </h1>
+      </div>
       <FormInformations
         formDetails={formDetails}
         setFormDetails={setFormDetails}
@@ -57,13 +62,13 @@ const EditFormPage: FC = () => {
       <div className="columns-3 m-10 flex items-center space-x-4 justify-end pb-10">
         <button
           onClick={() => navigate("/")}
-          className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-[#C27DFC] rounded-lg hover:bg-[#9d63ce]  focus:ring-4 focus:outline-none focus:ring-blue-30"
+          className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-[#5555ff] rounded-lg hover:bg-[#3c3cbd]   focus:ring-4 focus:outline-none focus:ring-blue-30 font-sans"
         >
           Cancel
         </button>
         <button
           onClick={editForm}
-          className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-[#C27DFC] rounded-lg hover:bg-[#9d63ce]  focus:ring-4 focus:outline-none focus:ring-blue-30"
+          className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-[#5555ff] rounded-lg hover:bg-[#3c3cbd]   focus:ring-4 focus:outline-none focus:ring-blue-30 font-sans"
         >
           Edit
         </button>

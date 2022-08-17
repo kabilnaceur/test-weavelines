@@ -10,21 +10,29 @@ const Navbar: FC = () => {
   const resetForms = useResetRecoilState(allFormsState);
 
   return (
-    <div className="w-screen h-[60px] z-10 bg-[#243B67] fixed drop-shadow-lg">
+    <div className="w-screen h-[90px] z-10 bg-[#000000] fixed drop-shadow-lg opacity-[0.9]">
       <div className="px-2 flex justify-between items-center w-full h-full">
         <div className="flex item-center colomn-2">
-          <img className="w-[220px] mr-10 ml-5" src={logo} alt="logo" />
+          <img
+            className="w-[180px] h-[30px] mr-2 ml-10"
+            src={logo}
+            alt="logo"
+          />
 
-          <h1 className="text-xl font-bold mr-4 sm:text-4xl text-[#EAEBED]">
-            Form
+          <h1 className="text-2xl font-bold mr-4 sm:text-2xl text-[#FFFFFF]">
+            Forms
           </h1>
         </div>
-        <ul className="hidden md:flex text-[#EAEBED]">
-          <li>
+        <ul className="hidden font-bold md:flex text-[#FFFFFF]  ">
+          <li className="hover:border-b-2 hover:border-[#5555ff]  w-full">
             <NavLink to="/">Forms</NavLink>
           </li>
-          <li>
-            <NavLink to="/answersForms">Answers</NavLink>
+          <li className="hover:border-b-2 hover:border-[#5555ff]  w-full">
+            <NavLink
+              to="/answersForms"
+            >
+              Answers
+            </NavLink>
           </li>
         </ul>
         <div className="hidden md:flex mr-6">
@@ -32,21 +40,25 @@ const Navbar: FC = () => {
             onClick={() => {
               resetForms();
             }}
-            className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-[#C27DFC] rounded-lg hover:bg-[#9d63ce]  focus:ring-4 focus:outline-none focus:ring-blue-30"
+            className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-[#5555ff] rounded-lg hover:bg-[#3c3cbd]  focus:ring-4 focus:outline-none focus:ring-blue-30"
           >
             Reset forms
           </button>
         </div>
 
         <div className="md:hidden" onClick={handleClick}>
-          {!nav ? <MenuIcon className="w-5" /> : <XIcon className="w-5" />}
+          {!nav ? (
+            <MenuIcon className="w-6 text-white" />
+          ) : (
+            <XIcon className="w-6 text-white" />
+          )}
         </div>
       </div>
-      <ul className={nav ? "absolute bg-zinc-200 w-full px-8" : "hidden"}>
-        <li className="border-b-2 border-zinc-300 w-full">
+      <ul className={nav ? "absolute bg-black w-full px-8" : "hidden"}>
+        <li className="border-b-2 border-[#5555ff]  w-full text-white font-bold">
           <NavLink to="/">Forms</NavLink>
         </li>
-        <li className="border-b-2 border-zinc-300 w-full">
+        <li className="border-b-2 border-[#5555ff]  w-full text-white font-bold">
           <NavLink to="/answersForms">Answers</NavLink>
         </li>
         <div className="p-6">
@@ -55,7 +67,7 @@ const Navbar: FC = () => {
               handleClick();
               resetForms();
             }}
-            className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 w-full"
+            className=" py-2 px-4 text-sm font-medium text-center text-white bg-[#5555ff] rounded-lg hover:bg-[#3c3cbd]  focus:ring-4 focus:outline-none focus:ring-blue-30 w-full items-center"
           >
             Reset forms
           </button>

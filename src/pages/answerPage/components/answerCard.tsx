@@ -39,14 +39,14 @@ const AnswerCard: FC<AnswerProps> = ({ answer, index ,form,setAllAnswers,allAnsw
         <div className="grid">
           <div className="flex justify-around">
             <div className="w-full p-6">
-              <h1 className="text-3xl text-[#243B67]">{answer.userEmail}</h1>
+              <h1 className="text-3xl text-black">{answer.userEmail}</h1>
               <div className="mt-5">
                 {answer.answers.map((ans: Answer, index: number) => (
                   <div className="columns-2" key={index}>
-                    <h1 className="text-md text-[#243B67]">
+                    <h1 className="text-md text-black">
                       {index + 1}- {ans.question} :
                     </h1>
-                    <h1 className="text-md text-[#243B67]">{ans.answer}</h1>
+                    <h1 className="text-md text-black">{ans.answer}</h1>
                   </div>
                 ))}
               </div>

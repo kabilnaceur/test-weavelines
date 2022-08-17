@@ -7,7 +7,12 @@ const AnswerPage: FC = () => {
   const locationState = location.state as Form;
     const [allAnswers, setAllAnswers] = useState<UserAnswer[]>(locationState.answers);
   return (
-    <div className="flex flex-col w-full h-screen p-16 ">
+    <div className="flex flex-col w-full h-screen p-[100px] ">
+      <div className=" w-full p-6">
+        <h1 className="text-3xl font-bold mr-4 sm:text-3xl text-black">
+          Answers
+        </h1>
+      </div>
       {allAnswers.map((answer: UserAnswer, index: number) => (
         <AnswerCard
           answer={answer}

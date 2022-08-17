@@ -12,7 +12,7 @@ const FloatingBtton: FC = () => {
         onClick={() => {
           navigate("/addForm");
         }}
-        className="fixed z-90 bottom-10 right-8 bg-[#6E5DCF] w-[65px] h-[65px] rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl hover:bg-[#52459c] hover:drop-shadow-2xl hover:animate-bounce duration-300"
+        className="fixed z-90 bottom-10 right-8 bg-[#5555ff] w-[65px] h-[65px] rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl hover:bg-[#52459c] hover:drop-shadow-2xl hover:animate-bounce duration-300"
       >
         <PlusIcon className="w-8" />
       </button>
