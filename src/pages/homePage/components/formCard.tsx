@@ -15,7 +15,7 @@ const FormCard: FC<FormProps> = ({ form, index }) => {
   const navigate = useNavigate();
   const allForms: Form[] = useRecoilValue(allFormsState);
   const setAllForms = useSetRecoilState(allFormsState);
-  const [show, setShow] = useState<Boolean>(false);
+  const [show, setShow] = useState<boolean>(false);
   const handleChangeShow = (): void => setShow(!show);
   const deleteForm = () => {
     const newForm: Form[] = [...allForms];

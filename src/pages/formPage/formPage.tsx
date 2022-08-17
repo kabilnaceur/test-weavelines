@@ -29,6 +29,7 @@ const FormPage: FC = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<UserAnswer>({ resolver: yupResolver(schema) });
 /**
@@ -39,7 +40,7 @@ const FormPage: FC = () => {
   const onSubmit = (data: UserAnswer) => confirmAnswers(data);
   const locationState = location.state as Form;
   const [showModal, setShowModal] = useState<boolean>(false);
-  const formDetails: Form = locationState;
+  const [formDetails, setFormDetails] = useState<Form>(locationState);
   const allForms: Form[] = useRecoilValue(allFormsState);
   const setAllForms = useSetRecoilState(allFormsState);
 /**
@@ -51,6 +52,7 @@ const FormPage: FC = () => {
       ...formDetails,
       answers: [...formDetails.answers, data],
     };
+    setFormDetails(newFormAnswer);
     let newForm: Form[] = [...allForms];
     newForm = newForm?.map((f: Form) =>
       f.title === formDetails.title && f.description === formDetails.description
@@ -62,6 +64,10 @@ const FormPage: FC = () => {
   };
   const resetAnswers = (): void => {
     setShowModal(false);
+    reset({
+      userEmail: '',
+      answers:[]
+        });
   };
 
   return (
