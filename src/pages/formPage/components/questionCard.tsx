@@ -9,7 +9,6 @@ const QuestionCard: FC<QuestionAnswerCardProps> = ({
   index,
   errors
 }) => {
-
   return (
     <div>
       <div className=" p-6 bg-white rounded-xl shadow-lg items-center space-x-4 mb-5">
@@ -60,7 +59,9 @@ const QuestionCard: FC<QuestionAnswerCardProps> = ({
                         {...register(`answers.${index}.isRequired`, {
                           value: question.isRequired,
                         })}
-                        {...register(`answers.${index}.answer`)}
+                        {...register(`answers.${index}.answer`,{
+                          value: opt,
+                        })}
                         id="checked-checkbox"
                         type="checkbox"
                         value={opt}
